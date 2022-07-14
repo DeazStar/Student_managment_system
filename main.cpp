@@ -1,6 +1,5 @@
 #include <iostream>
 #include <stdlib.h>
-#include <cstdlib.h>
 
 using namespace std;
 
@@ -23,14 +22,15 @@ void display(Student s[], int size);
 
 int main()
 {
-    again:
+
 
     Student stud[10];
 
-    int size;
+    int size = 0;
 
     int num;
 
+    menu:
     char user_input;
 
     cout << "\t\t---------------------------" << endl;
@@ -41,27 +41,30 @@ int main()
     cout << endl;
     cout << "\t Enter your choice :-> ";
 
-    system("CLS");
+  //  system("cls");
 
     cin >> user_input;
 
     switch(user_input)
     {
         case '1':
-            cout << "\n\n\t\t_______________________________" << endl;
-            cout << "\t\t  |        Add Student Record         |" << endl;
-            cout << "\t\t_______________________________" << endl;
+            cout << "\n\n";
+            cout << "\t\t-------------------------------" << endl;
+            cout << "\t\t|        Add Student Record    " << endl;
+            cout << "\t\t-------------------------------" << endl;
 
             cout << "\t\t Enter the number of Students: ";
 
             cin >> num;
 
-            for (int i = 0; i < num; i++)
+            for (int i = size; i < (num + size); i++)
             {
                 stud[i] = add(stud[i]);
             }
 
-            goto again;
+            size += num;
+
+            goto menu;
 
             break;
         case '2':
@@ -70,7 +73,7 @@ int main()
             display(stud, size);
 
             cout << "\t\t Press any key to continue... ";
-            goto again;
+            goto menu;
 
             break;
 
@@ -88,15 +91,26 @@ int main()
 
 Student add(Student s)
 {
-    int itrate = 0;
+    cin.ignore();
 
-    cout << "\t\tEnter Student name: ";
+    cout << "\t\t Enter Student name: ";
 
-    cin >> s.name;
+    cin.get(s.name, 50);
+
+    again:
 
     cout << "\t\tEnter Age: ";
 
     cin >> s.age;
+
+   if (s.age > 50 || s.age < 18)
+    {
+        cout << "\t\t Please Enter the correct age!" << endl;
+        cout << "Press any key to retry... ";
+        char user_input;
+        cin >> user_input;
+        goto again;
+    }
 
     for (int i = 0; i < 3; i++)
     {
@@ -104,6 +118,7 @@ Student add(Student s)
 
         cin >> s.grade[i];
     }
+    cout << endl;
 
     return s;
 }
@@ -115,20 +130,21 @@ void display(Student s[], int size)
     cout <<"\t\t-----------------------------" << endl;
     cout << "\n\n";
 
+    cout << "\t\t+----------------------------------------------------------+" << endl;
+     cout << "\t\t\tStudent Name | Age  |  Grade 1  | Grade 2 | Grade 3 |" << endl;
     for (int i = 0; i < size; i++)
     {
-        cout << "________________________________" << endl;
-        cout << "        Record " << i+1 << endl;
-        cout << "________________________________" << endl;
-        cout << "\n";
-        cout << "Student name: " << s[i].name << endl;
-        cout << "Student Age: " << s[i].age << endl;
-
+        cout << "\t\t\t" << s[i].name << "\t\t" << s[i].age << "       ";
         for (int j = 0; j < 3; j++)
         {
-            cout << "Grade " << i+1 << ": "<< s[i].grade[j] << endl;
+            cout << s[i].grade[j];
+            cout << "       ";
         }
+        cout << endl;
     }
+    cout << "\t\t+----------------------------------------------------------+" << endl;
+    cout << endl;
+    cout << endl;
 
 
 
