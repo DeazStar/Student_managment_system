@@ -9,13 +9,18 @@ using namespace std;
  * Return - 0;
  *
  */
-
-struct Student
+struct Personalinfo
 {
     char name[50];
     int age;
+};
+
+struct Student
+{
+    Personalinfo info;
     float grade [3];
 };
+
 
 Student add(Student s);
 void display(Student s[], int size);
@@ -95,15 +100,15 @@ Student add(Student s)
 
     cout << "\t\t Enter Student name: ";
 
-    cin.get(s.name, 50);
+    cin.get(s.info.name, 50);
 
     again:
 
     cout << "\t\tEnter Age: ";
 
-    cin >> s.age;
+    cin >> s.info.age;
 
-   if (s.age > 50 || s.age < 18)
+   if (s.info.age > 50 || s.info.age < 18)
     {
         cout << "\t\t Please Enter the correct age!" << endl;
         cout << "Press any key to retry... ";
@@ -134,7 +139,7 @@ void display(Student s[], int size)
      cout << "\t\t\tStudent Name | Age  |  Grade 1  | Grade 2 | Grade 3 |" << endl;
     for (int i = 0; i < size; i++)
     {
-        cout << "\t\t\t" << s[i].name << "\t\t" << s[i].age << "       ";
+        cout << "\t\t\t" << s[i].info.name << "\t\t" << s[i].info.age << "       ";
         for (int j = 0; j < 3; j++)
         {
             cout << s[i].grade[j];
