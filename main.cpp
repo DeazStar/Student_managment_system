@@ -1,4 +1,5 @@
 #include <iostream>
+#include <string.h>
 #include <stdlib.h>
 
 using namespace std;
@@ -24,6 +25,7 @@ struct Student
 
 Student add(Student s);
 void display(Student s[], int size);
+void search(Student s[], int size);
 
 int main()
 {
@@ -41,7 +43,8 @@ int main()
     cout << "\t\t---------------------------" << endl;
     cout << "\t\t|      1. Add Student      |" << endl;
     cout << "\t\t|      2. Display Student  |" << endl;
-    cout << "\t\t|      3. Exit             |" << endl;
+    cout << "\t\t|      3. Search           |" << endl;
+    cout << "\t\t|      4. Exit             |" << endl;
     cout << "\t\t---------------------------" << endl;
     cout << endl;
     cout << "\t Enter your choice :-> ";
@@ -81,8 +84,9 @@ int main()
             goto menu;
 
             break;
-
         case '3':
+            search(stud, size);
+        case '4':
             exit(0);
             break;
         default:
@@ -152,5 +156,26 @@ void display(Student s[], int size)
     cout << endl;
 
 
+
+}
+
+void search(Student s[], int size)
+{
+    char namessearch[50];
+    cout <<"\t\t-----------------------------" << endl;
+    cout <<"\t\t|   Search Student Name     |" << endl;
+    cout <<"\t\t-----------------------------" << endl;
+    cout << "\n\n";
+    cout << "Enter Student Name: ";
+    cin.ignore();
+    cin.get(namessearch, 50);
+    cout << "Result" << endl;
+    for (int i = 0; i < size; i++)
+    {
+        if (strcmp(namessearch, s[i].info.name) == 0)
+        {
+            cout << s[i].info.name << endl;
+        }
+    }
 
 }
