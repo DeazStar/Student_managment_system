@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string.h>
 #include <stdlib.h>
+#include <cstring>
 
 using namespace std;
 
@@ -86,6 +87,8 @@ int main()
             break;
         case '3':
             search(stud, size);
+            goto menu;
+            break;
         case '4':
             exit(0);
             break;
@@ -161,6 +164,8 @@ void display(Student s[], int size)
 
 void search(Student s[], int size)
 {
+    searchagain:
+    string user_input;
     char namessearch[50];
     cout <<"\t\t-----------------------------" << endl;
     cout <<"\t\t|   Search Student Name     |" << endl;
@@ -169,13 +174,42 @@ void search(Student s[], int size)
     cout << "Enter Student Name: ";
     cin.ignore();
     cin.get(namessearch, 50);
-    cout << "Result" << endl;
+   // int j = 0;
+    cout << "\t\tResult: " << endl;
+    cout << endl;
+    int k = 0;
     for (int i = 0; i < size; i++)
     {
-        if (strcmp(namessearch, s[i].info.name) == 0)
+        if (strncasecmp(namessearch, s[i].info.name, strlen(namessearch)) == 0)
         {
-            cout << s[i].info.name << endl;
+            k++;
+            cout << "\t\t+----------------------------------------------------------+" << endl;
+            cout << "\t\t\tStudent Name | Age  |  Grade 1  | Grade 2 | Grade 3 |" << endl;
+            cout << "\t\t\t" << s[i].info.name << "\t\t" << s[i].info.age << "       ";
+            for (int j = 0; j < 3; j++)
+           {
+            cout << s[i].grade[j];
+            cout << "       ";
+           }
+            cout << endl;
+            cout << "\t\t+----------------------------------------------------------+" << endl;
         }
     }
+
+    if (k == 0)
+    {
+        cout << "\t\t Not found" << endl;
+    }
+    cout << endl;
+    cout << "\t\t Press 1 to countinue searching. any other key to exit... ";
+    cin >> user_input;
+    if (user_input == "1")
+    {
+        goto searchagain;
+    }
+    cout << endl;
+
+
+
 
 }
