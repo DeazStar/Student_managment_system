@@ -25,19 +25,16 @@ struct Student
 };
 
 
-Student *add(Student s[],int,int &,int &);
+Student *add(Student s[],int);
 void display(Student s[], int size);
 void search(Student s[], int size);
 
+int size = 0;
+
+int num;
+
 int main()
 {
-     int size;
-
-    int num;
-
-
-
-
     Student stud[10];
 
     char user_choice;
@@ -65,12 +62,12 @@ int main()
             cout << "\t\t-------------------------------" << endl;
             cout << "\t\t|        Add Student Record    |" << endl;
             cout << "\t\t-------------------------------" << endl;
-            add(stud,10,size,num);
+            add(stud,10);
             goto menu;
 
             break;
         case '2':
-            size = num;
+            //size = num;
 
             display(stud, size);
 
@@ -96,15 +93,13 @@ int main()
 }
 
 
-Student *add(Student s[],int siz, int &size, int &num)
+Student *add(Student s[],int st)
 {
-    size = 0;
-
      cout << "\t\t Enter the number of students you want to add: ";
 
      cin >> num;
 
-    for(int j = 0; j < (num + size); j++)
+    for(int j = size; j < (num + size); j++)
     {
          cin.ignore();
 
