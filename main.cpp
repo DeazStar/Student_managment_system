@@ -148,13 +148,13 @@ void display(Student s[], int size)
     cout << "\n\n";
 
     cout << "\t\t+----------------------------------------------------------+" << endl;
-     cout << "\t\t\tStudent Name | Age  |  Grade 1  | Grade 2 | Grade 3 |" << endl;
+     cout << "\t\t\tStudent Name | Age  | Grade 1 | Grade 2 | Grade 3 |" << endl;
     for (int i = 0; i < size; i++)
     {
         cout << "\t\t\t" <<setw(13) << s[i].info.name << "|" << setw(6)<<s[i].info.age <<"|";
         for (int j = 0; j < 3; j++)
         {
-            cout <<setw(10) <<s[i].grade[j] << "|";
+            cout <<setw(9) <<s[i].grade[j] << "|";
         }
         cout << endl;
     }
@@ -175,7 +175,7 @@ void search(Student s[], int size)
     cout <<"\t\t|   Search Student Name     |" << endl;
     cout <<"\t\t-----------------------------" << endl;
     cout << "\n\n";
-    cout << "Enter Student Name: ";
+    cout << "\t\t Enter Student Name: ";
     cin.ignore();
     cin.get(namessearch, 50);
    // int j = 0;
@@ -187,13 +187,12 @@ void search(Student s[], int size)
         if (strncasecmp(namessearch, s[i].info.name, strlen(namessearch)) == 0)
         {
             k++;
-            cout << "\t\t+----------------------------------------------------------+" << endl;
-            cout << "\t\t\tStudent Name | Age  |  Grade 1  | Grade 2 | Grade 3 |" << endl;
-            cout << "\t\t\t" << s[i].info.name << "\t\t" << s[i].info.age << "       ";
+             cout << "\t\t+----------------------------------------------------------+" << endl;
+             cout << "\t\t\tStudent Name | Age  | Grade 1 | Grade 2 | Grade 3 |" << endl;
+             cout << "\t\t\t" <<setw(13) << s[i].info.name << "|" << setw(6)<<s[i].info.age <<"|";
             for (int j = 0; j < 3; j++)
            {
-            cout << s[i].grade[j];
-            cout << "       ";
+             cout <<setw(9) <<s[i].grade[j] << "|";
            }
             cout << endl;
             cout << "\t\t+----------------------------------------------------------+" << endl;
