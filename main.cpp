@@ -59,10 +59,10 @@ int main()
         case '1':
             cout << "\n\n";
             cout << "\t\t-------------------------------" << endl;
-            cout << "\t\t|        Add Student Record    " << endl;
+            cout << "\t\t|        Add Student Record    |" << endl;
             cout << "\t\t-------------------------------" << endl;
 
-            cout << "\t\t Enter the number of Students: ";
+            cout << "\t\t Enter the number of students you want to add: ";
 
             cin >> num;
 
@@ -111,22 +111,22 @@ Student add(Student s)
 
     again:
 
-    cout << "\t\tEnter Age: ";
+    cout << "\t\t Enter Age: ";
 
     cin >> s.info.age;
 
    if (s.info.age > 50 || s.info.age < 18)
     {
         cout << "\t\t Please Enter the correct age!" << endl;
-        cout << "Press any key to retry... ";
-        char user_input;
+        cout << "\t\t Press any key to retry... ";
+        string user_input;
         cin >> user_input;
         goto again;
     }
 
     for (int i = 0; i < 3; i++)
     {
-        cout << "\t\tEnter Grade " << i+1 << " :";
+        cout << "\t\t Enter Grade " << i+1 << " :";
 
         cin >> s.grade[i];
     }
