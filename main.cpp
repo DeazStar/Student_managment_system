@@ -25,19 +25,20 @@ struct Student
 };
 
 
-Student add(Student s);
+Student *add(Student s[],int,int &,int &);
 void display(Student s[], int size);
 void search(Student s[], int size);
 
 int main()
 {
+     int size;
+
+    int num;
+
+
 
 
     Student stud[10];
-
-    int size = 0;
-
-    int num;
 
     char user_choice;
 
@@ -64,18 +65,7 @@ int main()
             cout << "\t\t-------------------------------" << endl;
             cout << "\t\t|        Add Student Record    |" << endl;
             cout << "\t\t-------------------------------" << endl;
-
-            cout << "\t\t Enter the number of students you want to add: ";
-
-            cin >> num;
-
-            for (int i = size; i < (num + size); i++)
-            {
-                stud[i] = add(stud[i]);
-            }
-
-            size += num;
-
+            add(stud,10,size,num);
             goto menu;
 
             break;
@@ -106,38 +96,50 @@ int main()
 }
 
 
-Student add(Student s)
+Student *add(Student s[],int siz, int &size, int &num)
 {
-    cin.ignore();
+    size = 0;
 
-    cout << "\t\t Enter Student name: ";
+     cout << "\t\t Enter the number of students you want to add: ";
 
-    cin.get(s.info.name, 50);
+     cin >> num;
 
-    again:
-
-    cout << "\t\t Enter Age: ";
-
-    cin >> s.info.age;
-
-   if (s.info.age > 50 || s.info.age < 18)
+    for(int j = 0; j < (num + size); j++)
     {
-        cout << "\t\t Please Enter the correct age!" << endl;
-        cout << "\t\t Press any key to retry... ";
-        string user_input;
-        cin >> user_input;
-        goto again;
+         cin.ignore();
+
+        cout << "\t\t Enter Student name: ";
+
+        cin.get(s[j].info.name, 50);
+
+        again:
+
+        cout << "\t\t Enter Age: ";
+
+        cin >> s[j].info.age;
+
+        if (s[j].info.age > 50 || s[j].info.age < 18)
+        {
+            cout << "\t\t Please Enter the correct age!" << endl;
+            cout << "\t\t Press any key to retry... ";
+            string user_input;
+            cin >> user_input;
+            goto again;
+        }
+
+        for (int i = 0; i < 3; i++)
+        {
+            cout << "\t\t Enter Grade " << i+1 << " :";
+
+            cin >> s[j].grade[i];
+        }
+        cout << endl;
     }
 
-    for (int i = 0; i < 3; i++)
-    {
-        cout << "\t\t Enter Grade " << i+1 << " :";
-
-        cin >> s.grade[i];
-    }
-    cout << endl;
+    size += num;
 
     return s;
+
 }
 
 void display(Student s[], int size)
@@ -148,7 +150,7 @@ void display(Student s[], int size)
     cout << "\n\n";
 
     cout << "\t\t+----------------------------------------------------------+" << endl;
-     cout << "\t\t\tStudent Name | Age  | Grade 1 | Grade 2 | Grade 3 |" << endl;
+    cout << "\t\t\tStudent Name | Age  | Grade 1 | Grade 2 | Grade 3 |" << endl;
     for (int i = 0; i < size; i++)
     {
         cout << "\t\t\t" <<setw(13) << s[i].info.name << "|" << setw(6)<<s[i].info.age <<"|";
