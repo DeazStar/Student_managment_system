@@ -2,6 +2,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <cstring>
+#include <iomanip>
 
 using namespace std;
 
@@ -37,6 +38,8 @@ int main()
     int size = 0;
 
     int num;
+
+    char user_choice;
 
     menu:
     char user_input;
@@ -82,6 +85,8 @@ int main()
             display(stud, size);
 
             cout << "\t\t Press any key to continue... ";
+            cin >> user_choice;
+            cout << endl;
             goto menu;
 
             break;
@@ -146,11 +151,10 @@ void display(Student s[], int size)
      cout << "\t\t\tStudent Name | Age  |  Grade 1  | Grade 2 | Grade 3 |" << endl;
     for (int i = 0; i < size; i++)
     {
-        cout << "\t\t\t" << s[i].info.name << "\t\t" << s[i].info.age << "       ";
+        cout << "\t\t\t" <<setw(13) << s[i].info.name << "|" << setw(6)<<s[i].info.age <<"|";
         for (int j = 0; j < 3; j++)
         {
-            cout << s[i].grade[j];
-            cout << "       ";
+            cout <<setw(10) <<s[i].grade[j] << "|";
         }
         cout << endl;
     }
